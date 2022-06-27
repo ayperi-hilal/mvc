@@ -30,11 +30,30 @@ namespace site2.Controllers
 
         public ActionResult BlokDetay(int id)
         {
-
             by.deger1 = c.blogs.Where(x => x.ID == id).ToList();
             by.deger2 = c.yorumlars.Where(y => y.Blogid == id).ToList();
             by.deger3 = c.blogs.OrderByDescending(x => x.ID).Take(3).ToList();
             return View(by);
         }
+
+
+
+        [HttpGet]
+        public PartialViewResult YorumYap(int id)
+        {
+            ViewBag.deger = id;
+            return PartialView();
+        }
+
+        [HttpPost]
+        public PartialViewResult YorumYap(yorumlar y)
+        {
+            c.yorumlars.Add(y);
+            c.SaveChanges();
+            return PartialView();
+
+        }
+
+
     }
 }

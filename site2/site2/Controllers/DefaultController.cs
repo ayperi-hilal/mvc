@@ -82,5 +82,11 @@ namespace site2.Controllers
 
             return PartialView(Bloklar);
         }
+
+        public PartialViewResult Partial4()
+        {
+            var blok2 = c.blogs.Take(3).OrderByDescending(x => x.ID).ToList();
+            return PartialView(blok2);
+        }
     }
 }
