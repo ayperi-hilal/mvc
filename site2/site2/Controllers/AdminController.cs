@@ -11,6 +11,7 @@ namespace site2.Controllers
     {
         // GET: Admin
         Context C = new Context();
+        [Authorize]
         public ActionResult Index()
         {
             var degerler = C.blogs.ToList();
@@ -25,7 +26,7 @@ namespace site2.Controllers
 
 
         [HttpPost]
-        public ActionResult YeniBlog(blog p )
+        public ActionResult YeniBlog(blog p)
         {
             C.blogs.Add(p);
             C.SaveChanges();
@@ -62,7 +63,39 @@ namespace site2.Controllers
 
         }
 
+        [Authorize]
+        public ActionResult yorumListesi()
+        {
+            var yorumlar = C.yorumlars.ToList();
 
+            return View(yorumlar);
+        }
+
+        public ActionResult yorumSil(int id)
+        {
+            var bb = C.yorumlars.Find(id);
+            C.yorumlars.Remove(bb);
+            C.SaveChanges();
+            return RedirectToAction("yorumListesi");
+        }
+
+        public ActionResult yorumGetir(int id)
+        {
+            var yr = C.yorumlars.Find(id);
+            return View("yorumGetir", yr);
+
+        }
+
+        public ActionResult yorumGuncelle(yorumlar b)
+        {
+            var blg = C.yorumlars.Find(b.ID);
+            blg.Yorum = b.Yorum;
+            blg.KullanciAdi = b.KullanciAdi;
+            blg.Mail = b.Mail;
+            C.SaveChanges();
+            return RedirectToAction("yorumListesi");
+
+        }
 
     }
 }
