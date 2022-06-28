@@ -1,0 +1,28 @@
+﻿@using site2.Models.Sınıflar
+@model List<blog>
+
+<div class="con-bot">
+    @foreach (var x in Model)
+    {
+        <div class="right">
+            <div class="bot-left">
+                <img src="@x.BlogImage" alt="" />
+            </div>
+            <div class="left-text">
+                <h4>@x.baslik</h4>
+                @*<span class="doller">$1024.99</span>*@
+                <p>Ekleme Tarihi:@x.Tarih.ToString("dd.MM.yyyy")</p>
+                <p>
+                    @if (@x.Aciklama.Length > 10)
+                    {@x.Aciklama.Substring(0, 10)}
+                else
+                {@x.Aciklama}
+
+                </p>
+                <p><a href="/Blog/BlokDetay/@x.ID"><span class="read">Devamını Oku >></span></a></p>
+            </div>
+        </div>
+    }
+
+    <div class="clear"></div>
+</div>
