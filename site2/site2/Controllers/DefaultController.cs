@@ -88,5 +88,11 @@ namespace site2.Controllers
             var blok2 = c.blogs.Take(3).OrderByDescending(x => x.ID).ToList();
             return PartialView(blok2);
         }
+
+
+        public ActionResult Iletisim()
+        {
+            return View();
+        }
     }
 }

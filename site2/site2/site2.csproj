@@ -264,6 +264,7 @@
     <Content Include="webLogin\fonts\Asap-Regular.ttf" />
     <Content Include="webLogin\fonts\Audiowide-Regular.ttf" />
     <Content Include="Views\GirisYap\Login.cshtml" />
+    <Content Include="Views\Default\Iletisim.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
